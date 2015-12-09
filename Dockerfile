@@ -7,7 +7,7 @@
 FROM ubuntu:14.04
 
 # Set the file maintainer (your name - the file's author)
-MAINTAINER Dave Franco <davefranco1987@gmail.com> 
+MAINTAINER Dave J. Franco <davefranco1987@gmail.com> 
 
 # Set env variables used in this Dockerfile (add a unique prefix, such as DOCKYARD)
 # Local directory with project source
