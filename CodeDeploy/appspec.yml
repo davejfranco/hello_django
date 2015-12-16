@@ -8,5 +8,7 @@ hooks:
     - location: stop.sh
   BeforeInstall:
     - location: pull.sh
-  ApplicationStart:
+  Install:
     - location: start.sh
+  AfterInstall:
+    - location: clean.sh
