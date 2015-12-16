@@ -4,8 +4,8 @@ files:
   - source: /
     destination: /home/ec2-user
 hooks:
-  ApplicationStop:
-    - location: stop.sh
+  #ApplicationStop:
+  #  - location: stop.sh
   
   BeforeInstall:
     - location: clean.sh  
