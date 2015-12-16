@@ -6,9 +6,11 @@ files:
 hooks:
   ApplicationStop:
     - location: stop.sh
-  BeforeInstall:
-    - location: pull.sh
+  
   Install:
+    - location: pull.sh
+  
+  ApplicationStart:
     - location: start.sh
-  AfterInstall:
-    - location: clean.sh
+  
+  
