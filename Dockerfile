@@ -2,7 +2,6 @@
 # Dockerfile to run a Django-based web application
 # Based on an Ubuntu Image
 ############################################################
-#comment
 # Set the base image to use to Ubuntu
 FROM ubuntu:14.04
 
@@ -12,14 +11,17 @@ MAINTAINER Dave J. Franco <davefranco1987@gmail.com>
 # Set env variables used in this Dockerfile (add a unique prefix, such as DOCKYARD)
 # Local directory with project source
 ENV DOCKYARD_SRC=hello_django
+
 # Directory in container for all project files
 ENV DOCKYARD_SRVHOME=/srv
+
 # Directory in container for project source files
 ENV DOCKYARD_SRVPROJ=/srv/hello_django
 
 # Update the default application repository sources list
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y python python-pip
+RUN apt-get install -y python python-pip supervisor
+
 
 # Create application subdirectories
 WORKDIR $DOCKYARD_SRVHOME
@@ -37,6 +39,21 @@ EXPOSE 8000
 
 # Copy entrypoint script into the image
 WORKDIR $DOCKYARD_SRVPROJ
-COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY ./django-start.sh /
+
+#Copy supervisord configuration file
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+#Run supervisord 
+#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["supervisord", "-n"]
+
+
+
+
+
+
+
+
+
 
